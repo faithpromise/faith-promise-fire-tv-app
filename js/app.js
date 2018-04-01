@@ -9,7 +9,7 @@
     "use strict";
 
    /**
-    * The 'pause' event is fired when the app is sent to the background (app completely hidden) or when its partially obscured 
+    * The 'pause' event is fired when the app is sent to the background (app completely hidden) or when its partially obscured
     */
     function onPause() {
         if (app.playerView) {
@@ -47,23 +47,23 @@
         setTimeout(function() {
             if(window.innerWidth < window.innerHeight) {
                 $('#overlay-message').html('please rotate your device back to landscpe');
-                $('#app-overlay').css('display', 'block'); 
-            } 
+                $('#app-overlay').css('display', 'block');
+            }
             else {
                 $('#overlay-message').html('');
-                $('#app-overlay').css('display', 'none'); 
+                $('#app-overlay').css('display', 'none');
             }
         }, 500);
     }
 
-    document.addEventListener("amazonPlatformReady" , onAmazonPlatformReady, false);  
-    window.addEventListener('orientationchange', handleDeviceOrientation, false); 
+    document.addEventListener("amazonPlatformReady" , onAmazonPlatformReady, false);
+    window.addEventListener('orientationchange', handleDeviceOrientation, false);
 
    /**
     * The app object : the controller for the app, it creates views, manages navigation between views
     *                  routes input to the currently focused view, giving data to the views, and otherwise stitching things together
     * @param {Object} settingsParams settings for the application
-    *                 settingsParams.dataURL {String} url of the initial data request 
+    *                 settingsParams.dataURL {String} url of the initial data request
     *                 settingsParams.displayButtons {Boolean} flag that tells the app to display the buttons or not
     */
     function App(settingsParams) {
@@ -76,7 +76,7 @@
         this.$appContainer = $("#app-container");
 
        /**
-        * Handle the call to the model to get our data 
+        * Handle the call to the model to get our data
         */
         this.makeInitialDataCall = function () {
             this.data.loadInitialData(this.dataLoaded);
@@ -97,16 +97,16 @@
             // quick template render to add the logo to the app, probably doesnt need an entire view since its one line
             if (app.data.appLogo) {
                 logo = app.data.appLogo;
-            } 
-            else {
-                logo = "assets/img_logo.png";
             }
-            
+            else {
+                logo = "assets/logo.svg";
+            }
+
             var html = utils.buildTemplate($("#app-header-template"), {
                 img_logo:logo
             });
             this.$appContainer.append(html);
-            
+
             this.initializeLeftNavView();
 
             this.initializeOneDView();
@@ -115,7 +115,7 @@
 
         }.bind(this);
 
-       /** 
+       /**
         * Set the application's current view
         * @param {Object} view the current view
         */
@@ -149,7 +149,7 @@
        /**
         * All button events route through here, send them to current view
         * Views are switched based on the type of key press - up and down
-        * key events will make the left-nav menu the focus while left and 
+        * key events will make the left-nav menu the focus while left and
         * right control the oneDView. When the video player has focus it
         * will handle all key events
         * @param {Event} e
@@ -159,7 +159,7 @@
             //Pending implementation detail.
             if (this.currentView) {
                 this.currentView.handleControls(e);
-            } 
+            }
             else if (e.type === 'buttonpress' && e.keyCode === buttons.BACK) {
                 this.exitApp();
             }
@@ -172,7 +172,7 @@
             if(e.type === 'swipe') {
                 if($("#left-nav-list-container").hasClass('leftnav-menulist-collapsed')) {
                     this.currentView = this.oneDView;
-                } 
+                }
                 else {
                     this.currentView = this.leftNavView;
                 }
@@ -182,7 +182,7 @@
 
        /***************************
         *
-        * IAP Purchase Flow 
+        * IAP Purchase Flow
         *
         **************************/
         this.initializeEntitlementView = function() {
@@ -218,7 +218,7 @@
                 if (!this.showSearch || index !== 0) {
                     //remove the contents of the oneDView
                     this.oneDView.remove();
-                    
+
                     //show the spinner
                     this.loadingSpinner.show.spinner();
 
@@ -227,11 +227,11 @@
                     app.data.setCurrentCategory(index);
 
                     //update the content
-                    this.oneDView.updateCategory();   
-                    
+                    this.oneDView.updateCategory();
+
                     //set the selected view
                     this.selectView(this.oneDView);
-                    
+
                     //hide the leftNav
                     this.leftNavView.collapse();
 
@@ -243,14 +243,14 @@
                 else {
                     //remove the contents of the oneDView
                     this.oneDView.remove();
-                    
+
                     //show the spinner
                     this.loadingSpinner.show.spinner();
                     this.oneDView.updateCategoryFromSearch(this.searchInputView.currentSearchQuery);
 
                     //set the selected view
                     this.selectView(this.oneDView);
-                    
+
                     //hide the leftNav
                     this.leftNavView.collapse();
                 }
@@ -265,7 +265,7 @@
                     this.exitApp();
                 }
             }, this);
-   
+
            /**
             * Event Handler - exit the left nav back to oneD
             */
@@ -279,7 +279,7 @@
                     if (this.leftNavView.currSelectedIndex === 0) {
                     this.leftNavView.searchUpdated = true;
                     this.leftNavView.confirmNavSelection();
-                    }   
+                    }
                 }, this);
             }
 
@@ -291,7 +291,7 @@
             }, this);
 
            /**
-            * Event Handler - Change index of currently selected menu item 
+            * Event Handler - Change index of currently selected menu item
             * @param {Number} index the index of the selected item
             */
             leftNavView.on('indexChange', function(index) {
@@ -302,7 +302,7 @@
                 else {
                     if (this.showSearch) {
                         app.data.setCurrentCategory(index - 1);
-                    } 
+                    }
                     else {
                         app.data.setCurrentCategory(index);
                     }
@@ -314,7 +314,7 @@
             }, this);
 
            /**
-            * Event Handler - When the left nav is loaded remove the 
+            * Event Handler - When the left nav is loaded remove the
             *                 app overlay until the content is loaded
             */
             leftNavView.on('loadComplete', function() {
@@ -334,14 +334,14 @@
 
        /***************************
         *
-        * One D View 
+        * One D View
         *
         **************************/
         this.initializeOneDView = function() {
             // create and set up the 1D view
             var oneDView = this.oneDView = new OneDView();
 
-           /** 
+           /**
             * Event Handler - Select shoveler item
             * @param {Number} index the index of the selected item
             */
@@ -349,7 +349,7 @@
                 this.data.setCurrentItem(index);
                 if (this.categoryData[index].type === "subcategory") {
                     this.transitionToSubCategory(this.categoryData, index);
-                } 
+                }
                 else if (this.categoryData[index].type === "video-live" && !this.categoryData[index].isLiveNow) {
                     alert("This video is not yet available.");
                     buttons.resync();
@@ -360,7 +360,7 @@
                 }
             }, this);
 
-           /** 
+           /**
             * Event Handler - No content found for oneD event
             */
             oneDView.on('noContent', function() {
@@ -380,7 +380,7 @@
                     if(this.settingsParams.entitlement) {
                         this.transitionToEntitlementView();
                     }
-                } 
+                }
                 else {
                     this.transitionToLeftNavView();
                 }
@@ -393,8 +393,8 @@
                 this.exitApp();
             }, this);
 
-           /** 
-            * Event Handler - Load Complete 
+           /**
+            * Event Handler - Load Complete
             * @param {Number} index the index of the selected item
             */
             oneDView.on('loadComplete', function() {
@@ -402,7 +402,7 @@
                 handleDeviceOrientation();
             }, this);
 
-           /** 
+           /**
             * Success Callback handler for category data request
             * @param {Object} categoryData
             */
@@ -446,7 +446,7 @@
             subCategoryView.fadeIn();
             this.selectView(this.subCategoryView);
 
-           /** 
+           /**
             * Event Handler - Select shoveler item
             * @param {Number} index the index of the selected item
             */
@@ -483,7 +483,7 @@
 
             }, this);
         }.bind(this);
-        
+
        /**
         * Change to subcategory
         * @param {Object} data subcategory
@@ -494,7 +494,7 @@
             app.data.getSubCategoryData(this.openSubCategory);
         }.bind(this);
 
-       /** 
+       /**
         * Sets up the update function for changing the live stream title and description when the content changes on it.
         * @param {Object} data to get the updated information from
         * @param {Number} current index what is playing
@@ -503,7 +503,7 @@
             if (index + 1 < data.length) {
                 var nextIndex = index + 1;
                 if (data[nextIndex].type === "video-live")
-                {             
+                {
                     var startTime = new Date(data[nextIndex].startTime).getTime();
                     var currTime = new Date().getTime();
                     var updateTime = startTime - currTime;
@@ -523,7 +523,7 @@
         }.bind(this);
 
        /**
-        * loadingSpinner Object 
+        * loadingSpinner Object
         * Used to show/hide the loading spinner and app overlay
         */
         this.loadingSpinner = {
@@ -563,14 +563,14 @@
         };
 
        /**
-        * Show application header bar 
+        * Show application header bar
         */
         this.showHeaderBar = function() {
             $("#app-header-bar").show();
         };
 
 /***********************************
- * 
+ *
  * Application Transition Methods
  *
  ***********************************/
@@ -581,7 +581,7 @@
             this.selectView(this.leftNavView);
             this.leftNavView.setHighlightedElement();
 
-            //change size of selected shoveler item 
+            //change size of selected shoveler item
             this.oneDView.shrinkShoveler();
         };
 
@@ -599,7 +599,7 @@
         };
 
        /**
-        * Set the UI back to the oneDView 
+        * Set the UI back to the oneDView
         */
         this.transitionOutOfEntitlementView = function() {
             this.selectView(this.oneDView);
@@ -611,7 +611,7 @@
             this.entitlementView.deselectButton();
         };
 
-       /** 
+       /**
         * For touch there is no need to select the chosen left-nav
         * item, so we go directly to the expanded view
         */
@@ -621,7 +621,7 @@
             //expand the left nav
             this.leftNavView.expand();
 
-            //change size of selected shoveler item 
+            //change size of selected shoveler item
             this.oneDView.shrinkShoveler();
         };
 
@@ -636,12 +636,12 @@
             this.leftNavView.collapse();
             this.selectView(this.oneDView);
 
-            //change size of selected shoveler item 
+            //change size of selected shoveler item
             this.oneDView.expandShoveler();
         };
 
        /**
-        * Transition from player view to one-D view 
+        * Transition from player view to one-D view
         */
         this.transitionFromPlayerToOneD = function () {
             this.selectView(this.oneDView);
@@ -657,7 +657,7 @@
         };
 
         /**
-        * Transition from player view to SubCategory view 
+        * Transition from player view to SubCategory view
         */
         this.transitionFromPlayerToSubCategory = function () {
             this.selectView(this.subCategoryView);
@@ -671,7 +671,7 @@
         };
 
        /**
-        * Opens a player view and starts video playing in it. 
+        * Opens a player view and starts video playing in it.
         * @param {Array} data of current play list
         * @param {integer} index of currently selected item
         */
@@ -764,7 +764,7 @@
 
         touches.on('touch', this.handleTouch, this);
         touches.on('swipe', this.handleTouch, this);
-        
+
         // initialize error handler instance that will be used globally
         exports.errorHandler = new ErrorHandler();
         // initialize utils instance
@@ -931,7 +931,7 @@
         //initialize the model and get the first data set
         this.data = new this.settingsParams.Model(this.settingsParams);
 
-        // handle errors from the model 
+        // handle errors from the model
         this.data.on("error", function(errType, errStack) {
             var errorDialog;
             var buttons;

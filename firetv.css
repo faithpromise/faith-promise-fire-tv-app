@@ -33,8 +33,7 @@ body {
   margin: 0;
   font-size: 20pt;
   font-family: "Helvetica Neue Light", "HelveticaNeue-Light", Helvetica, Arial, sans-serif;
-  background: #5a656f url("assets/bg_app.jpg") no-repeat left top;
-  background-size: 100% 100%; }
+  background-color: #f8f8f8; }
 
 div {
   -webkit-box-sizing: border-box;
@@ -55,7 +54,7 @@ div {
 
 .app-logo {
   position: absolute;
-  bottom: -7px;
+  bottom: -80px;
   right: 150px; }
 
 .leftnav-main-container {
@@ -142,7 +141,7 @@ div {
 .leftnav-list-item-highlighted {
   color: #e8e8e8;
   border-width: 1px 1px 1px 0px;
-  background: #000000 url("assets/icon_leftnav_arrowDown.png") no-repeat right 40px center;
+  background: #353535 url("assets/icon_leftnav_arrowDown.png") no-repeat right 40px center;
   -webkit-filter: brightness(200%);
   -moz-filter: brightness(200%);
   filter: brightness(200%); }
@@ -152,11 +151,9 @@ div {
   background: #ffffff url("assets/icon_leftnav_arrowDown.png") no-repeat right 40px center; }
 
 .leftnav-list-item-chosen {
-  border-color: #3f484f;
-  border-style: solid;
-  border-width: 1px 1px 1px 0px;
-  color: #e8e8e8;
-  background: #3f484f url("assets/icon_leftnav_arrowDown.png") no-repeat right 40px center; }
+  border: none;
+  color: #353535;
+  background: #cbdb2f url("assets/icon_leftnav_arrowDown.png") no-repeat right 40px center; }
 
 .search-icon {
   height: 50px;
@@ -165,7 +162,7 @@ div {
 .leftnav-search-box {
   border: none;
   width: 100%;
-  color: #e8e8e8;
+  color: #353535;
   padding-left: 140px;
   background-image: url("assets/search.png");
   background-position: 85px 30px;
@@ -181,7 +178,7 @@ div {
   border-color: #e8e8e8;
   border-style: solid;
   border-width: 1px 1px 1px 0px;
-  background: #000000 url("assets/icon_leftnav_arrowDown.png") no-repeat right 40px center; }
+  background: #353535 url("assets/icon_leftnav_arrowDown.png") no-repeat right 40px center; }
 
 .one-d-no-items-container {
   position: absolute;
@@ -231,7 +228,7 @@ div {
   color: #e8e8e8; }
   .one-D-details-summary-text .one-D-summary-title {
     line-height: 1.4;
-    color: #e8e8e8;
+    color: #515151;
     font-size: 1.8em;
     font-family: "Helvetica Neue Medium", "HelveticaNeue-Medium", Helvetica, Arial, sans-serif;
     height: 62px;
@@ -255,13 +252,13 @@ div {
     font-weight: 200;
     height: 30px;
     font-size: 1em;
-    color: #b9bbbd; }
+    color: #3a3a3a; }
     .one-D-details-summary-text .one-D-summary-pubdate .time-now-live {
       color: #FF704D; }
     .one-D-details-summary-text .one-D-summary-pubdate .time-upcoming {
       color: #66E066; }
   .one-D-details-summary-text .one-D-summary-description {
-    color: #e8e8e8;
+    color: rgba(0, 0, 0, 0.56);
     font-style: italic;
     font-size: 1.1em;
     overflow: hidden;
