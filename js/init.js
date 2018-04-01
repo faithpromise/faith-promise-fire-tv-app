@@ -5,7 +5,7 @@
         Model: JSONMediaModel,
         PlayerView: PlayerView,
         PlaylistView: PlaylistPlayerView,
-        dataURL: "./assets/genericMediaData.json",
+        dataURL: "https://faithpromise.org/app-api/roku",
         showSearch: true,
         displayButtons:false,
         skipLength: 10,
