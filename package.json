@@ -1,0 +1,22 @@
+{
+  "name": "faith-promise-fire-tv-app",
+  "version": "1.0.0",
+  "description": "Fire TV app for Faith Promise",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zachnthebox/faith-promise-fire-tv-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zachnthebox/faith-promise-fire-tv-app/issues"
+  },
+  "homepage": "https://github.com/zachnthebox/faith-promise-fire-tv-app#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
