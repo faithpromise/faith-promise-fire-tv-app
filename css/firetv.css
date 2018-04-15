@@ -141,19 +141,19 @@ div {
 .leftnav-list-item-highlighted {
   color: #e8e8e8;
   border-width: 1px 1px 1px 0px;
-  background: #353535 url("assets/icon_leftnav_arrowDown.png") no-repeat right 40px center;
+  background: #353535 url("images/icon_leftnav_arrowDown.png") no-repeat right 40px center;
   -webkit-filter: brightness(200%);
   -moz-filter: brightness(200%);
   filter: brightness(200%); }
 
 .leftnav-list-item-container .leftnav-list-item-selected {
   color: #000000;
-  background: #ffffff url("assets/icon_leftnav_arrowDown.png") no-repeat right 40px center; }
+  background: #ffffff url("images/icon_leftnav_arrowDown.png") no-repeat right 40px center; }
 
 .leftnav-list-item-chosen {
   border: none;
   color: #353535;
-  background: #cbdb2f url("assets/icon_leftnav_arrowDown.png") no-repeat right 40px center; }
+  background: #cbdb2f url("images/icon_leftnav_arrowDown.png") no-repeat right 40px center; }
 
 .search-icon {
   height: 50px;
@@ -164,7 +164,7 @@ div {
   width: 100%;
   color: #353535;
   padding-left: 140px;
-  background-image: url("assets/search.png");
+  background-image: url("images/search.png");
   background-position: 85px 30px;
   background-size: 40px 40px;
   background-repeat: no-repeat;
@@ -178,7 +178,7 @@ div {
   border-color: #e8e8e8;
   border-style: solid;
   border-width: 1px 1px 1px 0px;
-  background: #353535 url("assets/icon_leftnav_arrowDown.png") no-repeat right 40px center; }
+  background: #353535 url("images/icon_leftnav_arrowDown.png") no-repeat right 40px center; }
 
 .one-d-no-items-container {
   position: absolute;
@@ -278,7 +278,7 @@ div {
     -moz-line-clamp: 2;
     line-clamp: 2; }
   .one-D-details-summary-text .one-D-live-icon {
-    background-image: url(assets/live.png);
+    background-image: url(images/live.png);
     height: 44px;
     width: 93px;
     background-position-y: 5px;
@@ -399,7 +399,7 @@ div {
   height: 100%;
   margin-left: -10px;
   display: inline-block;
-  background-image: url("assets/bg_subcat.png"); }
+  background-image: url("images/bg_subcat.png"); }
 
 .player-main-container {
   position: absolute;
@@ -460,7 +460,7 @@ div {
   color: #e8e8e8;
   display: flex;
   background-size: 100% 100%;
-  background-image: url("assets/skip_indicator.png");
+  background-image: url("images/skip_indicator.png");
   min-width: 200px;
   margin-left: -20px;
   transition: 0.05s; }
@@ -597,7 +597,7 @@ div {
   display: block;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url("assets/btn_previewPlay.png"); }
+  background-image: url("images/btn_previewPlay.png"); }
 
 .next-video-playingtext {
   margin-left: 50px;

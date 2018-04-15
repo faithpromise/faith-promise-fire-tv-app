@@ -99,7 +99,7 @@
                 logo = app.data.appLogo;
             }
             else {
-                logo = "assets/logo.svg";
+                logo = "images/logo.svg";
             }
 
             var html = utils.buildTemplate($("#app-header-template"), {

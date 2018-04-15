@@ -1,7 +1,7 @@
-/* Shoveler View 
+/* Shoveler View
  *
  * Handles the "shoveler" which is a right-to-left carousel view with endpoints on both sides
- * 
+ *
  */
 
 (function (exports) {
@@ -24,14 +24,14 @@
         this.currScrollDirection = null;
         this.loadingImages = 0;
 
-        //global jquery variables 
+        //global jquery variables
         this.$el = null;
         this.$rowElements = null;
         this.rowsData = null;
 
         //constants
         this.MARGIN_WIDTH = 40;
-        this.DEFAULT_IMAGE = "assets/default-image.png";
+        this.DEFAULT_IMAGE = "images/default-image.png";
         this.transformStyle = utils.vendorPrefix('Transform');
 
         this.fadeOut = function() {
@@ -74,11 +74,11 @@
             if(targetIndex === this.currSelection) {
                 this.trigger('select', this.currSelection);
             } else {
-                //set current selected item 
+                //set current selected item
                 this.setSelectedElement(targetIndex);
 
                 this.transitionRow();
-                
+
                 this.trigger("stopScroll", this.currSelection);
             }
         }.bind(this);
@@ -109,7 +109,7 @@
             //gather widths of all the row elements
             this.initialLayout();
 
-            //register touch handlers for items 
+            //register touch handlers for items
             touches.registerTouchHandler("shoveler-full-img", this.handleContentItemSelection);
 
             this.on("stopScroll", this.finalizeSelection);
@@ -132,7 +132,7 @@
                      $currImage = $currElt.children("img.shoveler-full-img");
                 }
 
-                //set a callback to make sure all images are loaded 
+                //set a callback to make sure all images are loaded
                 this.createImageLoadHandlers($currElt, $currImage, i);
 
                 this.loadingImages++;
@@ -195,7 +195,7 @@
         * and send our 'loadComplete' event to stop the spinner
         */
         this.finalizeRender = function () {
-            this.$el.css('opacity', ''); 
+            this.$el.css('opacity', '');
             this.trigger('loadComplete');
         };
 
@@ -220,11 +220,11 @@
         }.bind(this);
 
         /**
-         * Handles controls: LEFT: Move to main content if first element, otherwise select previous element 
-         *                                RIGHT: Select next element 
-         *                                UP: Return to main content view 
-         *                                DOWN: Nothing at the moment 
-         *                                BACK:Back to leftNav State 
+         * Handles controls: LEFT: Move to main content if first element, otherwise select previous element
+         *                                RIGHT: Select next element
+         *                                UP: Return to main content view
+         *                                DOWN: Nothing at the moment
+         *                                BACK:Back to leftNav State
          * @param {event} the keydown event
          */
         this.handleControls = function (e) {
@@ -327,7 +327,7 @@
          */
         this.selectRowElement = function (direction) {
 
-            if ((direction > 0 && (this.$rowElements.length - 1) === this.currSelection) || 
+            if ((direction > 0 && (this.$rowElements.length - 1) === this.currSelection) ||
                 (direction < 0 && this.currSelection === 0 )) {
                 return false;
             }
@@ -340,7 +340,7 @@
         }.bind(this);
 
        /**
-        * This will manage the transition of the newly 
+        * This will manage the transition of the newly
         * selected item to the currently selected item
         */
         this.transitionRow = function() {
@@ -376,7 +376,7 @@
         };
 
        /**
-        * Set back to full opacity when in the shoveler/oneD view 
+        * Set back to full opacity when in the shoveler/oneD view
         */
         this.unfadeSelected = function () {
             this.$rowElements[this.currSelection].style.opacity = "0.99";
@@ -456,7 +456,7 @@
         this.setTransforms = function (selected) {
             var currX = 0;
             selected = selected || this.currSelection;
-            
+
             //set selected element properties
             this.manageSelectedElement(this.$rowElements[selected]);
 
