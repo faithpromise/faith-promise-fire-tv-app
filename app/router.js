@@ -7,6 +7,11 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
+  this.route('play', function() {
+    this.route('video', {
+      path: ':id',
+    });
+  });
 });
 
 export default Router;

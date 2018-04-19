@@ -1,0 +1,27 @@
+.modal-dialog {
+  z-index: 650;
+  background-color: #242527;
+  color: #dadada;
+  position: absolute;
+  left: 515px;
+  top: 30%;
+  width: 890px;
+  min-height: 500px;
+  padding: 60px;
+}
+
+.modal-dialog .dialog-title {
+  margin-bottom: 30px;
+  font-size: 48pt;
+  font-family: "Helvetica Neue Medium", "HelveticaNeue-Medium", Helvetica, Arial, sans-serif;
+}
+
+.modal-dialog .dialog-message {
+  margin-bottom: 60px;
+  font-size: 36pt;
+}
+
+.modal-dialog .dialog-buttons-container {
+  justify-content: center;
+  display: flex;
+}

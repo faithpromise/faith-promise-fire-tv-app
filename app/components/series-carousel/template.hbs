@@ -1,0 +1,8 @@
+<div class="shoveler-row-container--title">{{series.title}}</div>
+<div class="one-D-shoveler-container">
+  <div class="shoveler-row-container">
+    {{#each series.episodes as |episode index|}}
+      {{series-carousel/episode-thumbnail episode=episode index=index currentCarouselIndex=currentIndex numberOfEpisodes=numberOfEpisodes selectEpisode=selectEpisode playVideo=playVideo}}
+    {{/each}}
+  </div>
+</div>

@@ -1,0 +1,30 @@
+* {
+  box-sizing: Border-box;
+}
+
+body,
+html {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  font-size: 20pt;
+  font-family: "Helvetica Neue Light", "HelveticaNeue-Light", Helvetica, Arial, sans-serif;
+  background-color: #f8f8f8;
+
+  > .ember-view {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+div {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
