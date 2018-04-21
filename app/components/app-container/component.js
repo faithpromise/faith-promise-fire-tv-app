@@ -59,7 +59,10 @@ export default Component.extend(EKMixin, EKOnInitMixin, {
 
   actions: {
     playVideo(episode) {
-      this.get('router').transitionTo('play.video', episode);
+      const seriesList = this.get('seriesList');
+      const selectedSeriesIndex = this.get('selectedSeriesIndex');
+      const series =  seriesList[selectedSeriesIndex];
+      this.get('router').transitionTo('play.series.episode', series, episode);
     },
     selectEpisode(selectedEpisode, selectedEpisodeIndex) {
       this.set('selectedEpisodeIndex', selectedEpisodeIndex);

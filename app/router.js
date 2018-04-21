@@ -8,8 +8,12 @@ const Router = EmberRouter.extend({
 
 Router.map(function() {
   this.route('play', function() {
-    this.route('video', {
-      path: ':id',
+    this.route('series', {
+      path: 'series/:series_id',
+    }, function() {
+      this.route('episode',{
+        path: 'epsiode/:episode_id',
+      });
     });
   });
 });
