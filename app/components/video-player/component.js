@@ -98,7 +98,7 @@ export default Component.extend(EKMixin, {
       this.get('updateCurrentTime').perform();
     },
     videoEnded() {
-      this.sendAction('videoEnded');
+      this.sendAction('videoEnded', this.get('episode'));
     },
   },
 });
