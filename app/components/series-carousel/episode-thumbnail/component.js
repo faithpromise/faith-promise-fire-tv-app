@@ -7,9 +7,6 @@ import {
   htmlSafe
 } from '@ember/string';
 import {
-  inject as service
-} from '@ember/service';
-import {
   EKMixin,
   EKOnInitMixin,
   keyDown
@@ -27,8 +24,6 @@ export default Component.extend(EKMixin, EKOnInitMixin, {
 
   attributeBindings: ['style'],
 
-  application: service(),
-
   thumbnail: computed('episode.thumbnail', function() {
     const url = this.get('episode.thumbnail');
     return url.replace('&h=1080&w=1920', '&h=360&w=640');
@@ -36,15 +31,11 @@ export default Component.extend(EKMixin, EKOnInitMixin, {
 
   index: 0,
 
-  episodeIsSelected: computed('currentCarouselIndex', 'index', function() {
-    return this.get('currentCarouselIndex') === this.get('index');
-  }),
-
-  style: computed('currentCarouselIndex', 'index', function() {
-    const currentCarouselIndex = this.get('currentCarouselIndex');
+  style: computed('selectedEpisodeIndex', 'index', function() {
+    const selectedEpisodeIndex = this.get('selectedEpisodeIndex');
     const index = this.get('index');
     const elementWidth = this.element.offsetWidth || 356;
-    let offset = Math.round(elementWidth + MARGIN_WIDTH) * (index - currentCarouselIndex);
+    let offset = Math.round(elementWidth + MARGIN_WIDTH) * (index - selectedEpisodeIndex);
     const style = `transform: translate3d(${offset}px,0, 0px);`;
     return htmlSafe(style);
   }),

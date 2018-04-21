@@ -1,12 +1,8 @@
 /* eslint ember/no-on-calls-in-components: "off" */
 import Component from '@ember/component';
 import {
-  computed,
   observer
 } from '@ember/object';
-import {
-  inject as service
-} from '@ember/service';
 import {
   EKMixin,
   EKOnInitMixin,
@@ -23,29 +19,19 @@ import $ from 'jquery';
 export default Component.extend(EKMixin, EKOnInitMixin, {
   classNames: ['one-D-details-container'],
 
-  application: service(),
-
   numberOfEpisodes: readOnly('series.episodes.length'),
 
-  currentIndex: null,
+  selectedEpisodeIndex: null,
 
   didInsertElement() {
     this._super(...arguments);
-    this.seriesSelectedObserver(this.get('application.selectedEpisodeIndex'));
+    this.seriesIsSelectedObserver();
   },
 
-  seriesSelected: computed('application.selectedSeries', function() {
-    return this.get('application.selectedSeries') === this.get('series');
-  }),
-
-  seriesSelectedObserver: observer('seriesSelected', function(index) {
-    if (this.get('seriesSelected')) {
-      const isValidIndex = typeof index === 'object' || !index;
-      this.set('currentIndex', isValidIndex ? 0 : index);
+  seriesIsSelectedObserver: observer('seriesIsSelected', function() {
+    if (this.get('seriesIsSelected')) {
       this.scrollToSeries();
       this._selectEpisode();
-    } else {
-      this.set('currentIndex', null);
     }
   }),
 
@@ -57,19 +43,19 @@ export default Component.extend(EKMixin, EKOnInitMixin, {
   },
 
   navigateLeft: on(keyDown('ArrowLeft'), function() {
-    if (!this.get('seriesSelected')) {
+    if (!this.get('seriesIsSelected')) {
       return;
     }
-    this.decrementPropertyWithMin('currentIndex', 0);
+    this.decrementPropertyWithMin('selectedEpisodeIndex', 0);
     this._selectEpisode();
   }),
 
   navigateRight: on(keyDown('ArrowRight'), function() {
-    if (!this.get('seriesSelected')) {
+    if (!this.get('seriesIsSelected')) {
       return;
     }
     const numberOfEpisodes = this.get('numberOfEpisodes');
-    this.incrementPropertyWithMax('currentIndex', numberOfEpisodes);
+    this.incrementPropertyWithMax('selectedEpisodeIndex', numberOfEpisodes);
     this._selectEpisode();
   }),
 
@@ -87,9 +73,8 @@ export default Component.extend(EKMixin, EKOnInitMixin, {
   },
 
   _selectEpisode() {
-    const currentIndex = this.get('currentIndex');
-    const episode = this.get('series.episodes')[currentIndex];
-    this.set('application.selectedEpisodeIndex', currentIndex);
-    this.selectEpisode(episode);
+    const selectedEpisodeIndex = this.get('selectedEpisodeIndex');
+    const episode = this.get('series.episodes')[selectedEpisodeIndex];
+    this.selectEpisode(episode, selectedEpisodeIndex);
   },
 });
