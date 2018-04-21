@@ -32,7 +32,6 @@ export default Component.extend(EKMixin, {
   seriesIsSelectedObserver: observer('seriesIsSelected', function() {
     if (this.get('seriesIsSelected')) {
       this.scrollToSeries();
-      this._selectEpisode();
     }
   }),
 
@@ -45,13 +44,11 @@ export default Component.extend(EKMixin, {
 
   navigateLeft: on(keyDown('ArrowLeft'), function() {
     this.decrementPropertyWithMin('selectedEpisodeIndex', 0);
-    this._selectEpisode();
   }),
 
   navigateRight: on(keyDown('ArrowRight'), function() {
     const numberOfEpisodes = this.get('numberOfEpisodes');
     this.incrementPropertyWithMax('selectedEpisodeIndex', numberOfEpisodes);
-    this._selectEpisode();
   }),
 
   incrementPropertyWithMax(property, max = null) {
@@ -65,11 +62,5 @@ export default Component.extend(EKMixin, {
   decrementPropertyWithMin(property, min = 0) {
     const value = this.get(property) - 1;
     this.set(property, value < min ? min : value);
-  },
-
-  _selectEpisode() {
-    const selectedEpisodeIndex = this.get('selectedEpisodeIndex');
-    const episode = this.get('series.episodes')[selectedEpisodeIndex];
-    this.selectEpisode(episode, selectedEpisodeIndex);
   },
 });

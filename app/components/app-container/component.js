@@ -49,7 +49,6 @@ export default Component.extend(EKMixin, EKOnInitMixin, {
     this.set(property, value < min ? min : value);
   },
 
-  //This is a little hack because there is a double render if the selectedEpisode is set in the action below
   selectedEpisode: computed('selectedEpisodeIndex', 'selectedSeriesIndex', function() {
     const seriesList = this.get('seriesList');
     const selectedEpisodeIndex = this.get('selectedEpisodeIndex');
@@ -63,9 +62,6 @@ export default Component.extend(EKMixin, EKOnInitMixin, {
       const selectedSeriesIndex = this.get('selectedSeriesIndex');
       const series =  seriesList[selectedSeriesIndex];
       this.get('router').transitionTo('play.series.episode', series, episode);
-    },
-    selectEpisode(selectedEpisode, selectedEpisodeIndex) {
-      this.set('selectedEpisodeIndex', selectedEpisodeIndex);
     },
   },
 });
