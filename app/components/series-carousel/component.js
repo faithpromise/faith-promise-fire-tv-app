@@ -60,8 +60,7 @@ export default Component.extend(EKMixin, EKOnInitMixin, {
     if (!this.get('seriesSelected')) {
       return;
     }
-    const currentIndex = this.get('currentIndex') - 1;
-    this.set('currentIndex', currentIndex < 0 ? 0 : currentIndex);
+    this.decrementPropertyWithMin('currentIndex', 0);
     this._selectEpisode();
   }),
 
@@ -70,13 +69,22 @@ export default Component.extend(EKMixin, EKOnInitMixin, {
       return;
     }
     const numberOfEpisodes = this.get('numberOfEpisodes');
-    let currentIndex = this.get('currentIndex');
-    if (currentIndex + 1 === numberOfEpisodes) {
-      return;
-    }
-    this.set('currentIndex', currentIndex < numberOfEpisodes ? currentIndex + 1: 0);
+    this.incrementPropertyWithMax('currentIndex', numberOfEpisodes);
     this._selectEpisode();
   }),
+
+  incrementPropertyWithMax(property, max = null) {
+    const value = this.get(property);
+    if (value + 1 === max) {
+      return;
+    }
+    this.set(property, value < max ? value + 1 : 0);
+  },
+
+  decrementPropertyWithMin(property, min = 0) {
+    const value = this.get(property) - 1;
+    this.set(property, value < min ? min : value);
+  },
 
   _selectEpisode() {
     const currentIndex = this.get('currentIndex');

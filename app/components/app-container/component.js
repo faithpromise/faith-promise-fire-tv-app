@@ -49,12 +49,12 @@ export default Component.extend(EKMixin, EKOnInitMixin, {
     if (value + 1 === max) {
       return;
     }
-    this.set('selectedSeriesIndex', value < max ? value + 1 : 0);
+    this.set(property, value < max ? value + 1 : 0);
   },
 
   decrementPropertyWithMin(property, min = 0) {
     const value = this.get(property) - 1;
-    this.set('selectedSeriesIndex', value < min ? min : value);
+    this.set(property, value < min ? min : value);
   },
 
   actions: {
