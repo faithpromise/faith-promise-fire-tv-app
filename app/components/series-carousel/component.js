@@ -5,7 +5,6 @@ import {
 } from '@ember/object';
 import {
   EKMixin,
-  EKOnInitMixin,
   keyDown
 } from 'ember-keyboard';
 import {
@@ -16,8 +15,10 @@ import {
 } from '@ember/object/computed';
 import $ from 'jquery';
 
-export default Component.extend(EKMixin, EKOnInitMixin, {
+export default Component.extend(EKMixin, {
   classNames: ['one-D-details-container'],
+
+  keyboardActivated: readOnly('seriesIsSelected'),
 
   numberOfEpisodes: readOnly('series.episodes.length'),
 
@@ -43,17 +44,11 @@ export default Component.extend(EKMixin, EKOnInitMixin, {
   },
 
   navigateLeft: on(keyDown('ArrowLeft'), function() {
-    if (!this.get('seriesIsSelected')) {
-      return;
-    }
     this.decrementPropertyWithMin('selectedEpisodeIndex', 0);
     this._selectEpisode();
   }),
 
   navigateRight: on(keyDown('ArrowRight'), function() {
-    if (!this.get('seriesIsSelected')) {
-      return;
-    }
     const numberOfEpisodes = this.get('numberOfEpisodes');
     this.incrementPropertyWithMax('selectedEpisodeIndex', numberOfEpisodes);
     this._selectEpisode();

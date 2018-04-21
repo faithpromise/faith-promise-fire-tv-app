@@ -2,11 +2,11 @@
 /* eslint ember/no-on-calls-in-components: "off" */
 import Component from '@ember/component';
 import {
-  readOnly
+  readOnly,
+  bool
 } from '@ember/object/computed';
 import {
   EKMixin,
-  EKOnInitMixin,
   keyDown
 } from 'ember-keyboard';
 import {
@@ -19,8 +19,10 @@ import {
 
 const INFO_DISPLAY_TIMEOUT = 3000;
 
-export default Component.extend(EKMixin, EKOnInitMixin, {
+export default Component.extend(EKMixin, {
   classNames: ['player-main-container'],
+
+  keyboardActivated: bool('_player'),
 
   currentTime: null,
 

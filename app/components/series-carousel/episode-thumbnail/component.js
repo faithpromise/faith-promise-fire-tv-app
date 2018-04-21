@@ -8,17 +8,21 @@ import {
 } from '@ember/string';
 import {
   EKMixin,
-  EKOnInitMixin,
   keyDown
 } from 'ember-keyboard';
 import {
   on
 } from '@ember/object/evented';
+import {
+  readOnly
+} from '@ember/object/computed';
 
 const MARGIN_WIDTH = 40;
 
-export default Component.extend(EKMixin, EKOnInitMixin, {
+export default Component.extend(EKMixin, {
   classNames: ['shoveler-rowitem-static'],
+
+  keyboardActivated: readOnly('episodeIsSelected'),
 
   classNameBindings: ['episodeIsSelected:shoveler-rowitem-selected'],
 
@@ -35,15 +39,12 @@ export default Component.extend(EKMixin, EKOnInitMixin, {
     const selectedEpisodeIndex = this.get('selectedEpisodeIndex');
     const index = this.get('index');
     const elementWidth = this.element.offsetWidth || 356;
-    let offset = Math.round(elementWidth + MARGIN_WIDTH) * (index - selectedEpisodeIndex);
+    const offset = Math.round(elementWidth + MARGIN_WIDTH) * (index - selectedEpisodeIndex);
     const style = `transform: translate3d(${offset}px,0, 0px);`;
     return htmlSafe(style);
   }),
 
   intentToWatchVideo: on(keyDown('Enter'), keyDown('NumpadEnter'), function() {
-    if (!this.get('episodeIsSelected')) {
-      return;
-    }
     this.playVideo(this.get('episode'));
   }),
 });
