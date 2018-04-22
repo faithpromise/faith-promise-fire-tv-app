@@ -29,6 +29,6 @@ export default Component.extend({
     const scrollTop = $(this.element).position().top;
     $('.app-main-container').animate({
         scrollTop,
-    }, 0);
+    }, 200);
   },
 });
