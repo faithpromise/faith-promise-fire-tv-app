@@ -1,4 +1,3 @@
-/* eslint ember/no-on-calls-in-components: "off" */
 import Component from '@ember/component';
 import {
   computed
@@ -6,23 +5,11 @@ import {
 import {
   htmlSafe
 } from '@ember/string';
-import {
-  EKMixin,
-  keyDown
-} from 'ember-keyboard';
-import {
-  on
-} from '@ember/object/evented';
-import {
-  readOnly
-} from '@ember/object/computed';
 
 const MARGIN_WIDTH = 40;
 
-export default Component.extend(EKMixin, {
+export default Component.extend({
   classNames: ['shoveler-rowitem-static'],
-
-  keyboardActivated: readOnly('episodeIsSelected'),
 
   classNameBindings: ['episodeIsSelected:shoveler-rowitem-selected'],
 
@@ -42,9 +29,5 @@ export default Component.extend(EKMixin, {
     const offset = Math.round(elementWidth + MARGIN_WIDTH) * (index - selectedEpisodeIndex);
     const style = `transform: translate3d(${offset}px,0, 0px);`;
     return htmlSafe(style);
-  }),
-
-  intentToWatchVideo: on(keyDown('Enter'), keyDown('NumpadEnter'), function() {
-    this.playVideo(this.get('episode'));
   }),
 });

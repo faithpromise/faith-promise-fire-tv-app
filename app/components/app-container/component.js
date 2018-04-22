@@ -40,6 +40,14 @@ export default Component.extend(EKMixin, EKOnInitMixin, {
     this.incrementPropertyWithMax('selectedEpisodeIndex', numberOfEpisodes);
   }),
 
+  intentToWatchVideo: on(keyDown('Enter'), keyDown('NumpadEnter'), function() {
+    const selectedSeries =  this.get('selectedSeries');
+    const selectedEpisode = this.get('selectedEpisode');
+    if (selectedSeries && selectedEpisode) {
+      this.playEpisode(selectedSeries, selectedEpisode);
+    }
+  }),
+
   incrementPropertyWithMax(property, max = null) {
     const value = this.get(property);
     if (value + 1 === max) {

@@ -2,7 +2,7 @@
 <div class="one-D-shoveler-container">
   <div class="shoveler-row-container">
     {{#each series.episodes as |episode index|}}
-      {{series-carousel/episode-thumbnail episodeIsSelected=(and (eq selectedEpisodeIndex index) seriesIsSelected) episode=episode index=index numberOfEpisodes=numberOfEpisodes selectedEpisodeIndex=selectedEpisodeIndex playVideo=playVideo}}
+      {{series-carousel/episode-thumbnail episodeIsSelected=(and (eq selectedEpisodeIndex index) seriesIsSelected) episode=episode index=index numberOfEpisodes=numberOfEpisodes selectedEpisodeIndex=selectedEpisodeIndex}}
     {{/each}}
   </div>
 </div>
