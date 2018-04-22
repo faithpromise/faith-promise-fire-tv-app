@@ -15,6 +15,7 @@ Router.map(function() {
         path: 'epsiode/:episode_id',
       });
     });
+    this.route('live');
   });
 });
 

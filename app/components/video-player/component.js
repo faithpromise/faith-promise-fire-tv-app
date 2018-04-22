@@ -2,8 +2,8 @@
 /* eslint ember/no-on-calls-in-components: "off" */
 import Component from '@ember/component';
 import {
-  readOnly,
-  bool
+  reads,
+  and
 } from '@ember/object/computed';
 import {
   EKMixin,
@@ -27,23 +27,25 @@ export default Component.extend(EKMixin, {
 
   loading: false,
 
-  keyboardActivated: bool('_player'),
+  keyboardActivated: and('_player', 'canInteract'),
 
   currentTime: null,
 
   totalTime: null,
 
-  title: readOnly('episode.title'),
+  title: reads('episode.title'),
 
-  description: readOnly('episode.shortDescription'),
+  description: reads('episode.shortDescription'),
 
-  videoURL: readOnly('episode.content.videos.firstObject.url'),
+  videoURL: reads('episode.content.videos.firstObject.url'),
 
   autoPlay: true,
 
   playing: false,
 
   interacting: false,
+
+  canInteract: true,
 
   secondsLeft: computed('totalTime', 'currentTime', function() {
     const totalTime = this.get('totalTime');

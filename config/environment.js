@@ -20,7 +20,7 @@ module.exports = function(environment) {
     APP: {
       urls: {
         currentLiveEvent: '/api/v1/events/current',
-        liveStream: 'https://player.vimeo.com/external/263919943.m3u8?s=54dc949328e2c33d73654667413a2a5f6a16d5e8',
+        liveStream: 'https://player.vimeo.com/external/263919943.hd.mp4?s=5ae708ed29da2d18e8ae1a4c5ddca3b071512447&profile_id=175',
         data: '/app-api/roku'
       }
     }
@@ -49,7 +49,7 @@ module.exports = function(environment) {
   if (environment === 'production') {
     ENV.APP.urls = {
       currentLiveEvent: 'http://online.faithpromise.org/api/v1/events/current',
-      liveStream: 'https://player.vimeo.com/external/263919943.m3u8?s=54dc949328e2c33d73654667413a2a5f6a16d5e8',
+      liveStream: 'https://player.vimeo.com/external/263919943.hd.mp4?s=5ae708ed29da2d18e8ae1a4c5ddca3b071512447&profile_id=175',
       data: 'https://faithpromise.org/app-api/roku'
     }
   }
