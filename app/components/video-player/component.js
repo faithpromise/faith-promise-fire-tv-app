@@ -22,6 +22,8 @@ const INFO_DISPLAY_TIMEOUT = 3000;
 export default Component.extend(EKMixin, {
   classNames: ['player-main-container'],
 
+  loading: false,
+
   keyboardActivated: bool('_player'),
 
   currentTime: null,
@@ -89,6 +91,7 @@ export default Component.extend(EKMixin, {
   actions: {
     videoCanPlay(player) {
       this.set('totalTime', player.duration);
+      this.set('loading', false);
       this.set('_player', player);
       if (this.get('autoPlay')) {
         this.playVideo();
@@ -99,6 +102,9 @@ export default Component.extend(EKMixin, {
     },
     videoEnded() {
       this.sendAction('videoEnded', this.get('episode'));
+    },
+    videoStartedLoading() {
+      this.set('loading', true);
     },
   },
 });

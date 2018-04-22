@@ -7,6 +7,7 @@ const PLAYER_EVENTS = {
   timeupdate: 'timeUpdate',
   pause: 'pause',
   error: 'error',
+  loadstart: 'videoStartedLoading',
 };
 
 export default Component.extend({
