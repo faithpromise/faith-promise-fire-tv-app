@@ -1,4 +1,8 @@
 import data from './data';
+import moment from 'moment';
+import {
+  faker
+} from 'ember-cli-mirage';
 
 export default function() {
 
@@ -10,13 +14,10 @@ export default function() {
 
   this.get('/api/v1/events/current', function() {
     return {
-      meta: {
-        status: 200
-      },
       response: {
         item: {
-          isLive: true,
-          eventStartTime: '2018-04-22T11:30:00Z',
+          isLive: faker.random.boolean(),
+          eventStartTime: moment().add(15, 'minute').toISOString(),
         },
       },
     };
