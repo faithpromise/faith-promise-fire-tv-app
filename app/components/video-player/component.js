@@ -59,10 +59,11 @@ export default Component.extend(EKMixin, {
   playPauseVideo: on(keyDown('Enter'), keyDown('NumpadEnter'), function() {
     if (this.get('playing')) {
       this.pauseVideo();
+      this.set('interacting', true);
     } else {
       this.playVideo();
+      this.get('interactiveTimeout').perform();
     }
-    this.get('interactiveTimeout').perform();
   }),
 
   showInfoDisplay: on(keyDown('ArrowUp'), function() {
@@ -95,6 +96,9 @@ export default Component.extend(EKMixin, {
       this.set('_player', player);
       if (this.get('autoPlay')) {
         this.playVideo();
+        this.get('interactiveTimeout').perform();
+      } else {
+        this.set('interacting', true);
       }
     },
     videoTimeUpdated() {
