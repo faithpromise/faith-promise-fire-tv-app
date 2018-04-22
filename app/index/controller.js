@@ -9,7 +9,7 @@ export default Controller.extend({
 
   actions: {
     playEpisode(series, episode) {
-      this.transitionToRoute('play.series.episode', series, episode);
+      this.replaceRoute('play.series.episode', series, episode);
     },
   },
 });
