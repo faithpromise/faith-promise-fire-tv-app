@@ -16,7 +16,7 @@ import {
 } from '@ember/object';
 
 export default Component.extend(EKMixin, EKOnInitMixin, {
-  classNames: ['app-main-container', 'animated', 'fadeIn'],
+  classNames: ['app-home-screen', 'animated', 'fadeIn'],
 
   numberOfSeries: readOnly('seriesList.length'),
 

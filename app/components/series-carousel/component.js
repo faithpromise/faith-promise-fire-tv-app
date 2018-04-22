@@ -8,7 +8,7 @@ import {
 import $ from 'jquery';
 
 export default Component.extend({
-  classNames: ['one-D-details-container'],
+  classNames: ['series-carousel'],
 
   numberOfEpisodes: readOnly('series.episodes.length'),
 
@@ -27,7 +27,7 @@ export default Component.extend({
 
   scrollToSeries() {
     const scrollTop = $(this.element).position().top;
-    $('.app-main-container').animate({
+    $('.app-home-screen').animate({
         scrollTop,
     }, 200);
   },

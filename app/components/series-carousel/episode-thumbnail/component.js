@@ -9,9 +9,9 @@ import {
 const MARGIN_WIDTH = 40;
 
 export default Component.extend({
-  classNames: ['shoveler-rowitem-static'],
+  classNames: ['episode'],
 
-  classNameBindings: ['episodeIsSelected:shoveler-rowitem-selected'],
+  classNameBindings: ['episodeIsSelected:episode--selected'],
 
   attributeBindings: ['style'],
 
