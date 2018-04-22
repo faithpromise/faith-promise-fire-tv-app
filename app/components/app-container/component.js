@@ -36,6 +36,15 @@ export default Component.extend(EKMixin, EKOnInitMixin, {
     this.set('selectedEpisodeIndex', 0);
   }),
 
+  navigateLeft: on(keyDown('ArrowLeft'), function() {
+    this.decrementPropertyWithMin('selectedEpisodeIndex', 0);
+  }),
+
+  navigateRight: on(keyDown('ArrowRight'), function() {
+    const numberOfEpisodes = this.get('selectedSeries.episodes.length')
+    this.incrementPropertyWithMax('selectedEpisodeIndex', numberOfEpisodes);
+  }),
+
   incrementPropertyWithMax(property, max = null) {
     const value = this.get(property);
     if (value + 1 === max) {
@@ -49,11 +58,16 @@ export default Component.extend(EKMixin, EKOnInitMixin, {
     this.set(property, value < min ? min : value);
   },
 
-  selectedEpisode: computed('selectedEpisodeIndex', 'selectedSeriesIndex', function() {
+  selectedSeries: computed('selectedSeriesIndex', function() {
     const seriesList = this.get('seriesList');
-    const selectedEpisodeIndex = this.get('selectedEpisodeIndex');
     const selectedSeriesIndex = this.get('selectedSeriesIndex');
-    return seriesList[selectedSeriesIndex].episodes[selectedEpisodeIndex];
+    return seriesList[selectedSeriesIndex];
+  }),
+
+  selectedEpisode: computed('selectedEpisodeIndex', 'selectedSeries', function() {
+    const selectedSeries = this.get('selectedSeries');
+    const selectedEpisodeIndex = this.get('selectedEpisodeIndex');
+    return selectedSeries.episodes[selectedEpisodeIndex];
   }),
 
   actions: {
