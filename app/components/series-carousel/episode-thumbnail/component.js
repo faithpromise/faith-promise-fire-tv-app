@@ -5,19 +5,20 @@ import {
 import {
   htmlSafe
 } from '@ember/string';
+import InViewportMixin from 'ember-in-viewport';
 
 const MARGIN_WIDTH = 40;
 
-export default Component.extend({
+export default Component.extend(InViewportMixin, {
   classNames: ['episode'],
 
   classNameBindings: ['episodeIsSelected:episode--selected'],
 
   attributeBindings: ['style'],
 
-  thumbnail: computed('episode.thumbnail', function() {
+  thumbnail: computed('episode.thumbnail', 'viewportEntered', function() {
     const url = this.get('episode.thumbnail');
-    return url.replace('&h=1080&w=1920', '&h=360&w=640');
+    return this.get('viewportEntered') && url.replace('&h=1080&w=1920', '&h=360&w=640') || '';
   }),
 
   index: 0,
