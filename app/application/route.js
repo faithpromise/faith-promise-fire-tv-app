@@ -8,7 +8,7 @@ export default Route.extend({
   ajax: service(),
 
   model() {
-    const url = config.APP.dataURL;
+    const url = config.APP.urls.data;
     return this.get('ajax').request(url);
   },
 });

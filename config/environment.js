@@ -18,8 +18,11 @@ module.exports = function(environment) {
     },
 
     APP: {
-      // Here you can pass flags/options to your application instance
-      // when it is created
+      urls: {
+        currentLiveEvent: '/api/v1/events/current',
+        liveStream: 'https://player.vimeo.com/external/263919943.m3u8?s=54dc949328e2c33d73654667413a2a5f6a16d5e8',
+        data: '/app-api/roku'
+      }
     }
   };
 
@@ -29,7 +32,6 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
-    ENV.APP.dataURL = '/app-api/roku';
   }
 
   if (environment === 'test') {
@@ -45,7 +47,11 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.APP.dataURL = 'https://faithpromise.org/app-api/roku';
+    ENV.APP.urls = {
+      currentLiveEvent: 'http://online.faithpromise.org/api/v1/events/current',
+      liveStream: 'https://player.vimeo.com/external/263919943.m3u8?s=54dc949328e2c33d73654667413a2a5f6a16d5e8',
+      data: 'https://faithpromise.org/app-api/roku'
+    }
   }
 
   return ENV;
