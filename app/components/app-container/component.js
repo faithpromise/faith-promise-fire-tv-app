@@ -9,9 +9,6 @@ import {
   on
 } from '@ember/object/evented';
 import {
-  inject as service
-} from '@ember/service';
-import {
   readOnly
 } from '@ember/object/computed';
 import {
@@ -20,8 +17,6 @@ import {
 
 export default Component.extend(EKMixin, EKOnInitMixin, {
   classNames: ['app-main-container', 'animated', 'fadeIn'],
-
-  router: service(),
 
   numberOfSeries: readOnly('seriesList.length'),
 
@@ -75,7 +70,7 @@ export default Component.extend(EKMixin, EKOnInitMixin, {
       const seriesList = this.get('seriesList');
       const selectedSeriesIndex = this.get('selectedSeriesIndex');
       const series =  seriesList[selectedSeriesIndex];
-      this.get('router').transitionTo('play.series.episode', series, episode);
+      this.playEpisode(series, episode);
     },
   },
 });
