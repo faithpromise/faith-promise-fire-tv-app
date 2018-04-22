@@ -49,10 +49,14 @@ export default Component.extend(EKMixin, {
   }).restartable(),
 
   skipRight: on(keyDown('ArrowRight'), function() {
+    const player = this.get('_player');
+    player.currentTime += 10;
     this.get('interactiveTimeout').perform();
   }),
 
   skipLeft: on(keyDown('ArrowLeft'), function() {
+    const player = this.get('_player');
+    player.currentTime -= 10;
     this.get('interactiveTimeout').perform();
   }),
 
