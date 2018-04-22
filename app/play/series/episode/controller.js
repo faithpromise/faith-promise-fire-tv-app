@@ -1,15 +1,13 @@
 import Controller from '@ember/controller';
 
 export default Controller.extend({
-  queryParams: ['series', 'episode'],
+  queryParams: ['nextEpisodeId'],
 
-  series: 0,
-
-  episode: 0,
+  nextEpisodeId: null,
 
   actions: {
     playEpisode(series, episode) {
-      this.transitionToRoute('play.series.episode', series, episode);
+      this.replaceRoute('play.series.episode', series, episode);
     },
   },
 });

@@ -16,6 +16,9 @@ import {
 import {
   on
 } from '@ember/object/evented';
+import {
+  computed
+} from '@ember/object';
 
 const INFO_DISPLAY_TIMEOUT = 3000;
 
@@ -41,6 +44,12 @@ export default Component.extend(EKMixin, {
   playing: false,
 
   interacting: false,
+
+  secondsLeft: computed('totalTime', 'currentTime', function() {
+    const totalTime = this.get('totalTime');
+    const currentTime = this.get('currentTime');
+    return Math.ceil(totalTime) - Math.ceil(currentTime);
+  }),
 
   interactiveTimeout: task(function*() {
     this.set('interacting', true);
