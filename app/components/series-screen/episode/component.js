@@ -2,17 +2,12 @@ import Component from '@ember/component';
 import {
   observer
 } from '@ember/object';
-import {
-  readOnly,
-} from '@ember/object/computed';
 import $ from 'jquery';
 
 export default Component.extend({
-  classNames: ['series-carousel'],
+  classNames: ['series-episodes--episode'],
 
-  numberOfSeries: readOnly('items.length'),
-
-  selectedItemIndex: null,
+  classNameBindings: ['isSelected:series-episodes--episode--selected'],
 
   didInsertElement() {
     this._super(...arguments);
@@ -27,7 +22,7 @@ export default Component.extend({
 
   scrollTo() {
     const scrollTop = $(this.element).position().top;
-    $('.app-home-screen').animate({
+    $('.app-series-screen').animate({
       scrollTop,
     }, 200);
   },

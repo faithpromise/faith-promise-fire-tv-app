@@ -11,11 +11,14 @@ Router.map(function() {
     this.route('series', {
       path: 'series/:series_id',
     }, function() {
-      this.route('episode',{
+      this.route('episode', {
         path: 'epsiode/:episode_id',
       });
     });
     this.route('live');
+  });
+  this.route('series', {
+    path: 'series/:series_id',
   });
 });
 

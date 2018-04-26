@@ -1,6 +1,9 @@
-<div class="series-carousel--title">{{series.title}}</div>
+<div class="series-carousel--title">{{title}}</div>
+{{#if (and isSelected (not-eq type 'stream'))}}
+  <div class="series-carousel--count">{{add selectedItemIndex 1}} of {{items.length}}</div>
+{{/if}}
 <div class="series-carousel--episodes">
-    {{#each series.episodes as |episode index|}}
-      {{series-carousel/episode-thumbnail episodeIsSelected=(and (eq selectedEpisodeIndex index) seriesIsSelected) episode=episode index=index numberOfEpisodes=numberOfEpisodes selectedEpisodeIndex=selectedEpisodeIndex}}
-    {{/each}}
+  {{#each items as |series index|}}
+    {{thumbnail-image scrollableElement=element isSelected=(and (eq selectedItemIndex index) isSelected) thumbnail=series.thumbnail index=index numberOfSeries=numberOfSeries selectedItemIndex=selectedItemIndex}}
+  {{/each}}
 </div>

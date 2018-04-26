@@ -4,6 +4,7 @@
 }
 
 .series-carousel {
+  position: relative;
   width: 100%;
   margin: 1em;
   -webkit-transition-property: visibility;
@@ -15,6 +16,13 @@
   -webkit-transition-timing-function: linear;
   -moz-transition-timing-function: linear;
   transition-timing-function: linear;
+
+  &--count {
+    position: absolute;
+    top: 0;
+    right: 4em;
+    color: rgba(255, 255, 255, .5);
+  }
 
   &--title {
     color: #fff;
@@ -68,7 +76,8 @@
     &--selected img {
       background-blend-mode: overlay;
       display: inline-block;
-      box-shadow: 0 0 0 7px #cbdb2f;
+      box-shadow: 0 0 0 6px #9a9d9d;
+      border-radius: 3px;
     }
 
     .title {

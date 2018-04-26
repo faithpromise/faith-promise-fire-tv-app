@@ -1,6 +1,6 @@
-{{app-header episode=selectedEpisode}}
+{{app-header series=selectedItem}}
 <div class="video-rows">
-  {{#each seriesList as |series index|}}
-    {{series-carousel seriesIsSelected=(eq index selectedSeriesIndex) selectedEpisodeIndex=(if (eq index selectedSeriesIndex) selectedEpisodeIndex 0) series=series}}
+  {{#each tagSeperatedLists as |tagSeperatedList index|}}
+    {{series-carousel type=tagSeperatedList.type label=tagSeperatedList.label title=tagSeperatedList.label items=tagSeperatedList.items isSelected=(eq selectedCategoryIndex index) selectedItemIndex=(get homeScreen index)}}
   {{/each}}
 </div>

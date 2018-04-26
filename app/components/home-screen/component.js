@@ -9,76 +9,92 @@ import {
   on
 } from '@ember/object/evented';
 import {
-  readOnly
+  readOnly,
+  alias,
 } from '@ember/object/computed';
 import {
   computed
 } from '@ember/object';
+import {
+  A
+} from '@ember/array';
+import {
+  inject as service
+} from '@ember/service';
+
+const typeLabelMap = {
+  stream: 'Watch Online',
+  sermon: 'Sermons',
+  study: 'Group Studies',
+};
 
 export default Component.extend(EKMixin, EKOnInitMixin, {
   classNames: ['app-home-screen', 'animated', 'fadeIn'],
 
-  numberOfSeries: readOnly('seriesList.length'),
+  homeScreen: service(),
+
+  selectedCategoryIndex: alias('homeScreen.selectedCategoryIndex'),
+
+  selectedItemIndex: alias('homeScreen.selectedItemIndex'),
+
+  numberOfTags: readOnly('tagSeperatedLists.length'),
+
+  tagSeperatedLists: computed('seriesList', function() {
+    const types = Object.keys(typeLabelMap);
+    const lists = types.map(type => {
+      return {
+        type,
+        items: A(),
+        label: typeLabelMap[type],
+      };
+    });
+    this.get('seriesList').forEach(series => {
+      const tag = series.tags[0];
+      const tagIndex = types.indexOf(tag);
+      const tagList = lists[tagIndex];
+      if (tagIndex !== -1) {
+        tagList.items.pushObject(series);
+      }
+    });
+    return lists;
+  }),
 
   navigateDown: on(keyDown('ArrowDown'), function() {
-    const numberOfSeries = this.get('numberOfSeries');
-    this.incrementPropertyWithMax('selectedSeriesIndex', numberOfSeries);
-    this.set('selectedEpisodeIndex', 0);
+    const numberOfTags = this.get('numberOfTags');
+    this.incrementPropertyWithMax('selectedCategoryIndex', numberOfTags);
   }),
 
   navigateUp: on(keyDown('ArrowUp'), function() {
-    this.decrementPropertyWithMin('selectedSeriesIndex', 0);
-    this.set('selectedEpisodeIndex', 0);
+    this.decrementPropertyWithMin('selectedCategoryIndex', 0);
   }),
 
   navigateLeft: on(keyDown('ArrowLeft'), function() {
-    this.decrementPropertyWithMin('selectedEpisodeIndex', 0);
+    this.decrementPropertyWithMin('selectedItemIndex', 0);
   }),
 
   navigateRight: on(keyDown('ArrowRight'), function() {
-    const numberOfEpisodes = this.get('selectedSeries.episodes.length')
-    this.incrementPropertyWithMax('selectedEpisodeIndex', numberOfEpisodes);
+    const numberOfItems = this.get('selectedCategory.items.length')
+    this.incrementPropertyWithMax('selectedItemIndex', numberOfItems);
   }),
 
-  intentToWatchVideo: on(keyDown('Enter'), keyDown('NumpadEnter'), function() {
-    const selectedSeries =  this.get('selectedSeries');
-    const selectedEpisode = this.get('selectedEpisode');
-    if (selectedSeries && selectedEpisode) {
-      this.playEpisode(selectedSeries, selectedEpisode);
-    }
-  }),
-
-  incrementPropertyWithMax(property, max = null) {
-    const value = this.get(property);
-    if (value + 1 === max) {
+  showEpisodes: on(keyDown('Enter'), keyDown('NumpadEnter'), function() {
+    const selectedCategory = this.get('selectedCategory');
+    const selectedItem = this.get('selectedItem');
+    if (!selectedCategory || !selectedItem) {
       return;
     }
-    this.set(property, value < max ? value + 1 : 0);
-  },
-
-  decrementPropertyWithMin(property, min = 0) {
-    const value = this.get(property) - 1;
-    this.set(property, value < min ? min : value);
-  },
-
-  selectedSeries: computed('selectedSeriesIndex', function() {
-    const seriesList = this.get('seriesList');
-    const selectedSeriesIndex = this.get('selectedSeriesIndex');
-    return seriesList[selectedSeriesIndex];
+    this.showSeries(selectedItem);
   }),
 
-  selectedEpisode: computed('selectedEpisodeIndex', 'selectedSeries', function() {
-    const selectedSeries = this.get('selectedSeries');
-    const selectedEpisodeIndex = this.get('selectedEpisodeIndex');
-    return selectedSeries.episodes[selectedEpisodeIndex];
+  selectedCategory: computed('selectedCategoryIndex', function() {
+    const categoryList = this.get('tagSeperatedLists');
+    const selectedCategoryIndex = this.get('selectedCategoryIndex');
+    return categoryList[selectedCategoryIndex];
   }),
 
-  actions: {
-    playVideo(episode) {
-      const seriesList = this.get('seriesList');
-      const selectedSeriesIndex = this.get('selectedSeriesIndex');
-      const series =  seriesList[selectedSeriesIndex];
-      this.playEpisode(series, episode);
-    },
-  },
+  selectedItem: computed('selectedItemIndex', 'selectedCategory', function() {
+    const selectedCategory = this.get('selectedCategory');
+    const selectedItemIndex = this.get('selectedItemIndex');
+    return selectedCategory.items[selectedItemIndex];
+  }),
 });

@@ -1,0 +1,57 @@
+.app-series-screen {
+  position: relative;
+  width: inherit;
+  height: inherit;
+  overflow: hidden;
+  background: url("../images/background.jpg") no-repeat;
+
+  .series-info {
+    top: 8em;
+    position: fixed;
+    left: 3em;
+    color: #fff;
+
+    &--thumbnail {
+      width: 640px;
+    }
+
+    &--meta {
+      padding-top: 0.7em;
+    }
+  }
+
+  .series-episodes {
+    top: 8em;
+    left: calc(3em + 640px);
+    position: absolute;
+    padding-left: 2em;
+    color: #fff;
+    margin-bottom: 5em;
+
+    &--episode {
+      min-height: 6em;
+      margin-top: 1em;
+      padding: 2em;
+      background-color: #2e2e2e;
+
+      &:first-of-type {
+        margin-top: 0;
+      }
+
+      &--selected {
+        box-shadow: 0 0 0 6px #9a9d9d;
+        border-radius: 3px;
+      }
+
+      &__title {
+        font-weight: bold;
+        font-size: 25pt;
+      }
+
+      &__description {
+        font-size: 20pt;
+        padding-right: 4em;
+      }
+    }
+  }
+}
