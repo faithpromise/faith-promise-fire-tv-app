@@ -11800,6 +11800,6 @@ catch(err) {
 });
 
 if (!runningTests) {
-  require("faith-promise-fire-tv-app/app")["default"].create({"urls":{"currentLiveEvent":"/api/v1/events/current","onlineData":"/app-api/online","data":"/app-api/roku"},"name":"faith-promise-fire-tv-app","version":"0.0.0+a0336abe"});
+  require("faith-promise-fire-tv-app/app")["default"].create({"urls":{"currentLiveEvent":"/api/v1/events/current","onlineData":"/app-api/online","data":"/app-api/roku"},"name":"faith-promise-fire-tv-app","version":"0.0.0+e700b96a"});
 }
 //# sourceMappingURL=faith-promise-fire-tv-app.map
