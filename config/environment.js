@@ -46,6 +46,13 @@ module.exports = function(environment) {
     ENV.APP.autoboot = false;
   }
 
+  if (environment === 'review') {
+    ENV.rootURL = '/faith-promise-fire-tv-app';
+    ENV['ember-cli-mirage'] = {
+      enabled: true,
+    };
+  }
+
   if (environment === 'production') {
     ENV.APP.urls = {
       currentLiveEvent: 'http://online.faithpromise.org/api/v1/events/current',
