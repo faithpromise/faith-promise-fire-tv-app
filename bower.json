@@ -1,0 +1,6 @@
+{
+  "name": "faith-promise-fire-tv-app",
+  "dependencies": {
+    "video.js": "~5.12"
+  }
+}

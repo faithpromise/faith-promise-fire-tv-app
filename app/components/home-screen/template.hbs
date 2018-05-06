@@ -1,0 +1,6 @@
+{{app-header series=selectedItem}}
+<div class="video-rows">
+  {{#each tagSeperatedLists as |tagSeperatedList index|}}
+    {{series-carousel type=tagSeperatedList.type label=tagSeperatedList.label title=tagSeperatedList.label items=tagSeperatedList.items isSelected=(eq selectedCategoryIndex index) selectedItemIndex=(get homeScreen index)}}
+  {{/each}}
+</div>

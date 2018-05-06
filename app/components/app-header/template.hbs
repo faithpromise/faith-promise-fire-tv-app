@@ -1,0 +1,12 @@
+<div class="series-information">
+  <div class="title">
+    {{series.title}}
+  </div>
+  <div class="description">
+    {{#if (eq series.id 'stream')}}
+      Watch church online each Sunday. Twelve service times to choose from.
+    {{else}}
+      {{moment-format series.releaseDate 'YYYY'}} | 1 Season
+    {{/if}}
+  </div>
+</div>

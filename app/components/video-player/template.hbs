@@ -1,0 +1,8 @@
+{{#if loading}}
+  <div class="content-load-spinner"></div>
+{{/if}}
+{{video-player/video src=videoURL canPlay='videoCanPlay' ended='videoEnded' timeUpdate='videoTimeUpdated' videoStartedLoading='videoStartedLoading'}}
+{{video-player/info-display interacting=interacting currentTime=currentTime totalTime=totalTime title=title description=description}}
+{{#if (and nextEpisode secondsLeft (lt secondsLeft 15))}}
+  {{video-player/next-video-countdown episode=nextEpisode secondsLeft=secondsLeft}}
+{{/if}}

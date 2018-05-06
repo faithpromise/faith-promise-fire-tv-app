@@ -1,0 +1,98 @@
+.video-rows {
+  top: 300px;
+  position: absolute;
+}
+
+.series-carousel {
+  position: relative;
+  width: 100%;
+  margin: 1em;
+  -webkit-transition-property: visibility;
+  -moz-transition-property: visibility;
+  transition-property: visibility;
+  -webkit-transition-duration: 0.2s;
+  -moz-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  -webkit-transition-timing-function: linear;
+  -moz-transition-timing-function: linear;
+  transition-timing-function: linear;
+
+  &--count {
+    position: absolute;
+    top: 0;
+    right: 4em;
+    color: rgba(255, 255, 255, .5);
+  }
+
+  &--title {
+    color: #fff;
+    font-weight: bold;
+    padding-left: 4em;
+    padding-bottom: 0.5em;
+  }
+
+  &--episodes {
+    left: 0;
+    width: 100vw;
+    height: 215px;
+    z-index: 20;
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-transition-property: -webkit-transform opacity;
+    -moz-transition-property: -moz-transform opacity;
+    transition-property: transform opacity;
+    -webkit-transition-property: -webkit-transform visibility;
+    -moz-transition-property: -moz-transform visibility;
+    transition-property: transform visibility;
+    -webkit-transition-duration: 1s;
+    -moz-transition-duration: 1s;
+    transition-duration: 1s;
+    -webkit-transition-timing-function: linear;
+    -moz-transition-timing-function: linear;
+    transition-timing-function: linear;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+  }
+
+  .episode {
+    position: absolute;
+    height: 200px;
+    left: 4em;
+    -webkit-transition-property: -webkit-transform opacity;
+    -moz-transition-property: -moz-transform opacity;
+    transition-property: transform opacity;
+    -webkit-transition-duration: 0.25s;
+    -moz-transition-duration: 0.25s;
+    transition-duration: 0.25s;
+    -webkit-transition-timing-function: linear;
+    -moz-transition-timing-function: linear;
+    transition-timing-function: linear;
+    -webkit-transform-origin: left center;
+    -moz-transform-origin: left center;
+    transform-origin: left center;
+
+    &--selected img {
+      background-blend-mode: overlay;
+      display: inline-block;
+      box-shadow: 0 0 0 6px #9a9d9d;
+      border-radius: 3px;
+    }
+
+    .title {
+      position: absolute;
+      bottom: 0;
+      background-color: rgba(255, 255, 255, 0.8);
+      width: 100%;
+      font-size: 16pt;
+      padding: 0.5em;
+      font-weight: bold;
+    }
+
+    img {
+      height: 100%;
+      display: inline-block;
+    }
+  }
+}
