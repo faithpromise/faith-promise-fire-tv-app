@@ -1,0 +1,541 @@
+* {
+  box-sizing: Border-box; }
+
+body,
+html {
+  width: 100%;
+  height: 100%;
+  overflow: hidden; }
+
+body {
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  font-size: 20pt;
+  font-family: "Helvetica Neue Light", "HelveticaNeue-Light", Helvetica, Arial, sans-serif;
+  background-color: #f8f8f8; }
+  body > .ember-view {
+    width: 100%;
+    height: 100%; }
+
+div {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+.video-rows {
+  top: 300px;
+  position: absolute; }
+
+.series-carousel {
+  position: relative;
+  width: 100%;
+  margin: 1em;
+  -webkit-transition-property: visibility;
+  -moz-transition-property: visibility;
+  transition-property: visibility;
+  -webkit-transition-duration: 0.2s;
+  -moz-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  -webkit-transition-timing-function: linear;
+  -moz-transition-timing-function: linear;
+  transition-timing-function: linear; }
+  .series-carousel--count {
+    position: absolute;
+    top: 0;
+    right: 4em;
+    color: rgba(255, 255, 255, 0.5); }
+  .series-carousel--title {
+    color: #fff;
+    font-weight: bold;
+    padding-left: 4em;
+    padding-bottom: 0.5em; }
+  .series-carousel--episodes {
+    left: 0;
+    width: 100vw;
+    height: 215px;
+    z-index: 20;
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-transition-property: -webkit-transform opacity;
+    -moz-transition-property: -moz-transform opacity;
+    transition-property: transform opacity;
+    -webkit-transition-property: -webkit-transform visibility;
+    -moz-transition-property: -moz-transform visibility;
+    transition-property: transform visibility;
+    -webkit-transition-duration: 1s;
+    -moz-transition-duration: 1s;
+    transition-duration: 1s;
+    -webkit-transition-timing-function: linear;
+    -moz-transition-timing-function: linear;
+    transition-timing-function: linear;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    transform-style: preserve-3d; }
+  .series-carousel .episode {
+    position: absolute;
+    height: 200px;
+    left: 4em;
+    -webkit-transition-property: -webkit-transform opacity;
+    -moz-transition-property: -moz-transform opacity;
+    transition-property: transform opacity;
+    -webkit-transition-duration: 0.25s;
+    -moz-transition-duration: 0.25s;
+    transition-duration: 0.25s;
+    -webkit-transition-timing-function: linear;
+    -moz-transition-timing-function: linear;
+    transition-timing-function: linear;
+    -webkit-transform-origin: left center;
+    -moz-transform-origin: left center;
+    transform-origin: left center; }
+    .series-carousel .episode--selected img {
+      background-blend-mode: overlay;
+      display: inline-block;
+      box-shadow: 0 0 0 6px #9a9d9d;
+      border-radius: 3px; }
+    .series-carousel .episode .title {
+      position: absolute;
+      bottom: 0;
+      background-color: rgba(255, 255, 255, 0.8);
+      width: 100%;
+      font-size: 16pt;
+      padding: 0.5em;
+      font-weight: bold; }
+    .series-carousel .episode img {
+      height: 100%;
+      display: inline-block; }
+
+.player-main-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; }
+
+.player-content-video {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: black; }
+
+.player-controls-container {
+  position: absolute;
+  width: 100%;
+  height: 30%;
+  padding: 0 8%;
+  bottom: 0;
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  transition: 0.5s;
+  z-index: 100; }
+  .player-controls-container--interacting {
+    opacity: 1; }
+
+.player-controls-timeline-container {
+  position: relative;
+  height: 10px;
+  margin-top: 20px; }
+
+.player-controls-timeline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #25435a;
+  border-radius: 6px;
+  background-color: #707070; }
+
+.player-controls-timeline-playhead {
+  position: absolute;
+  width: 0;
+  height: 10px;
+  border: 1px solid #394149;
+  margin-top: -1px;
+  border-radius: 6px;
+  background-color: #e8e8e8; }
+
+.player-controls-skip-indicator {
+  position: absolute;
+  height: 100px;
+  top: -100px;
+  left: 60px;
+  font-size: 1.8em;
+  color: #e8e8e8;
+  display: flex;
+  background-size: 100% 100%;
+  background-image: url("images/skip_indicator.png");
+  min-width: 200px;
+  margin-left: -20px;
+  transition: 0.05s; }
+
+.player-controls-skip-indicator img {
+  height: 22px;
+  width: 30px;
+  margin-left: 25px;
+  margin-top: 30px; }
+
+.player-controls-skip-indicator .player-controls-skip-symbol {
+  margin-left: 15px;
+  margin-top: 15px; }
+
+.player-controls-skip-indicator .player-controls-skip-number {
+  margin-top: 15px;
+  font-weight: bold; }
+
+.player-controls-skip-indicator .player-controls-skip-text {
+  margin-top: 16px;
+  margin-left: 5px;
+  margin-right: 20px;
+  font-weight: lighter; }
+
+#forward-indicator {
+  display: none; }
+
+#rewind-indicator {
+  display: none; }
+
+.player-controls-timestamp,
+.player-controls-timestamp-curtime,
+.player-controls-timestamp-totaltime {
+  margin-top: 10px;
+  font-size: 1.6em; }
+
+.player-controls-timestamp-curtime {
+  color: #e8e8e8;
+  display: inline-block;
+  float: left; }
+
+.player-controls-timestamp-totaltime {
+  color: #b9bbbd;
+  display: inline-block;
+  float: right; }
+
+.player-controls-content-title {
+  position: absolute;
+  top: 80px;
+  height: 59px;
+  color: #e8e8e8;
+  font-size: 1.8em;
+  font-family: "Helvetica Neue Medium", "HelveticaNeue-Medium", Helvetica, Arial, sans-serif;
+  margin-top: 20px;
+  overflow: hidden;
+  display: -webkit-box;
+  /* NEW - Chrome */
+  display: -moz-box;
+  /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox;
+  /* TWEENER - IE 10 */
+  display: box;
+  /* NEW, Spec - Opera 12.1, Firefox 20+ */
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  box-orient: vertical;
+  -webkit-line-clamp: 1;
+  -moz-line-clamp: 1;
+  line-clamp: 1; }
+
+.player-controls-button-back {
+  display: none; }
+
+.player-controls-content-subtitle {
+  position: absolute;
+  top: 170px;
+  width: 60%;
+  height: 72px;
+  color: #e8e8e8;
+  font-style: italic;
+  font-size: 1.1em;
+  display: -webkit-box;
+  /* NEW - Chrome */
+  display: -moz-box;
+  /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox;
+  /* TWEENER - IE 10 */
+  display: box;
+  /* NEW, Spec - Opera 12.1, Firefox 20+ */
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  box-orient: vertical;
+  -webkit-line-clamp: 2;
+  -moz-line-clamp: 2;
+  line-clamp: 2; }
+
+.player-pause-button {
+  position: absolute;
+  top: 250px;
+  left: 870px;
+  height: 200px;
+  width: 200px;
+  opacity: 0; }
+
+.next-video-main-container {
+  position: absolute;
+  height: 100%;
+  width: 30%;
+  right: 0;
+  display: flex;
+  color: #b9bbbd;
+  background-color: rgba(0, 0, 0, 0.8);
+  flex-direction: column; }
+
+.next-video-text {
+  margin-top: 60px;
+  margin-left: 50px;
+  font-weight: bold;
+  font-size: 1.1em;
+  color: #e8e8e8; }
+
+.next-video-thumbnail {
+  height: 250px;
+  max-width: 425px;
+  margin-left: 50px;
+  margin-top: 30px;
+  width: auto; }
+
+.next-video-thumbnail img {
+  width: 100%;
+  height: 100%;
+  border: solid 1px #ffffff; }
+
+.next-video-thumbnail:after {
+  position: relative;
+  top: -250px;
+  height: 100%;
+  width: 100%;
+  z-index: 90;
+  content: " ";
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url("images/btn_previewPlay.png"); }
+
+.next-video-playingtext {
+  margin-left: 50px;
+  margin-top: 15px; }
+
+.next-video-title {
+  margin-left: 50px;
+  margin-top: 30px;
+  color: #e8e8e8;
+  font-weight: lighter;
+  font-size: 2.5em;
+  line-height: 1; }
+
+.next-video-description {
+  margin-top: 30px;
+  margin-left: 50px;
+  overflow: hidden;
+  font-size: 1.1em;
+  color: #e8e8e8;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -moz-line-clamp: 5;
+  line-clamp: 5;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  box-orient: vertical; }
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    transform: rotate(360deg); } }
+
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    transform: rotate(360deg); } }
+
+.content-load-spinner {
+  margin: 6em auto;
+  font-size: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -7.5em;
+  /* Half the height */
+  margin-left: -7.5em;
+  /* Half the width */
+  z-index: 600;
+  text-indent: -9999em;
+  border-top: 1.2em solid rgba(255, 255, 255, 0.2);
+  border-right: 1.2em solid #ffffff;
+  border-bottom: 1.2em solid #ffffff;
+  border-left: 1.2em solid #ffffff;
+  -webkit-animation: spin 1.3s infinite linear;
+  -moz-animation: spin 1.3s infinite linear;
+  animation: spin 1.3s infinite linear; }
+
+.content-load-spinner,
+.content-load-spinner:after {
+  border-radius: 50%;
+  width: 15em;
+  height: 15em; }
+
+.modal-dialog {
+  z-index: 650;
+  background-color: #242527;
+  color: #dadada;
+  position: absolute;
+  left: 515px;
+  top: 30%;
+  width: 890px;
+  min-height: 500px;
+  padding: 60px; }
+
+.modal-dialog .dialog-title {
+  margin-bottom: 30px;
+  font-size: 48pt;
+  font-family: "Helvetica Neue Medium", "HelveticaNeue-Medium", Helvetica, Arial, sans-serif; }
+
+.modal-dialog .dialog-message {
+  margin-bottom: 60px;
+  font-size: 36pt; }
+
+.modal-dialog .dialog-buttons-container {
+  justify-content: center;
+  display: flex; }
+
+.app-home-screen {
+  position: relative;
+  width: inherit;
+  height: inherit;
+  overflow: hidden;
+  background: url("../images/background.jpg") no-repeat; }
+
+.app-top-bar {
+  position: fixed;
+  width: 100%;
+  height: 290px;
+  background: url("../images/background.jpg") no-repeat;
+  z-index: 10;
+  box-shadow: 0 7px 25px 0 rgba(0, 0, 0, 0.75); }
+  .app-top-bar .series-information {
+    position: absolute;
+    top: 5em;
+    left: 4em;
+    text-align: left;
+    padding: 1em 1em 0;
+    color: #fff; }
+    .app-top-bar .series-information .title {
+      font-size: 29pt; }
+    .app-top-bar .series-information .description {
+      font-size: 18pt; }
+
+.app-logo {
+  position: absolute;
+  bottom: -80px;
+  right: 150px; }
+
+.content-load-splash {
+  width: 100%;
+  height: 100%;
+  background: url("../images/splash.jpg") no-repeat; }
+
+.app-series-screen {
+  position: relative;
+  width: inherit;
+  height: inherit;
+  overflow: hidden;
+  background: url("../images/background.jpg") no-repeat; }
+  .app-series-screen .series-info {
+    top: 8em;
+    position: fixed;
+    left: 3em;
+    color: #fff; }
+    .app-series-screen .series-info--thumbnail {
+      width: 640px; }
+    .app-series-screen .series-info--meta {
+      padding-top: 0.7em; }
+  .app-series-screen .series-episodes {
+    top: 8em;
+    left: calc(3em + 640px);
+    position: absolute;
+    padding-left: 2em;
+    color: #fff;
+    margin-bottom: 5em; }
+    .app-series-screen .series-episodes--episode {
+      min-height: 6em;
+      margin-top: 1em;
+      padding: 2em;
+      background-color: #2e2e2e; }
+      .app-series-screen .series-episodes--episode:first-of-type {
+        margin-top: 0; }
+      .app-series-screen .series-episodes--episode--selected {
+        box-shadow: 0 0 0 6px #9a9d9d;
+        border-radius: 3px; }
+      .app-series-screen .series-episodes--episode__title {
+        font-weight: bold;
+        font-size: 25pt; }
+      .app-series-screen .series-episodes--episode__description {
+        font-size: 20pt;
+        padding-right: 4em; }
+
+.live-stream-button {
+  position: absolute;
+  width: 13em;
+  height: 3em;
+  background-color: #fff;
+  display: flex;
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+  transition: all 150ms linear;
+  text-align: center;
+  white-space: nowrap;
+  text-decoration: none !important;
+  text-transform: none;
+  text-transform: capitalize;
+  color: #313131;
+  border: 0 none;
+  border-radius: 4px;
+  font-weight: 500;
+  line-height: 1.3;
+  appearance: none;
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 160px;
+  box-shadow: 0 0 10px #e4e4e4; }
+  .live-stream-button.isLive {
+    animation: pulse 2.5s infinite; }
+  .live-stream-button .play-icon {
+    border: 0;
+    background: transparent;
+    box-sizing: border-box;
+    width: 0;
+    border-color: transparent transparent transparent #313131;
+    border-style: solid;
+    border-width: 20px 0 20px 30px;
+    margin-right: 0.5em; }
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+    background-color: #fff; }
+  50% {
+    box-shadow: 0 0 5px 10px rgba(255, 255, 255, 0);
+    background-color: #cbdb2f; }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    background-color: #fff; } }
+
+.app-overlay-message {
+  color: #e8e8e8;
+  text-align: center;
+  margin-top: 25%; }
+
+/*# sourceMappingURL=faith-promise-fire-tv-app.css.map */
